@@ -1,0 +1,134 @@
+{
+  "skill_name": "kaplay",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Je veux créer un petit jeu de plateforme avec KAPLAY. Il faut un personnage qui peut sauter avec la barre espace, des plateformes, des pièces à collecter et un score. Peux-tu m'aider à configurer le projet et écrire le code?",
+      "expected_output": "Complete platformer game code with player movement, jumping, platforms, coins, and score display using KAPLAY",
+      "files": [],
+      "assertions": [
+        {
+          "name": "kaplay-initialization",
+          "description": "Le code appelle kaplay() pour initialiser le moteur",
+          "test": "contains kaplay()"
+        },
+        {
+          "name": "player-sprite-component",
+          "description": "Le joueur a un composant sprite ou rect pour le rendu",
+          "test": "contains sprite() or rect() for player"
+        },
+        {
+          "name": "player-movement",
+          "description": "Le joueur peut se déplacer avec les touches (flèches)",
+          "test": "contains onKeyDown for movement"
+        },
+        {
+          "name": "jump-mechanic",
+          "description": "Le joueur peut sauter avec la barre espace (body + jump)",
+          "test": "contains body() and jump() or onKeyPress space"
+        },
+        {
+          "name": "coin-collectible",
+          "description": "Il y a des pièces/collectibles à ramasser",
+          "test": "contains coin or collectible with onCollide"
+        },
+        {
+          "name": "score-display",
+          "description": "Le score est affiché à l'écran avec text()",
+          "test": "contains text() for score display"
+        },
+        {
+          "name": "platform-creation",
+          "description": "Des plateformes sont créées (rect + body isStatic)",
+          "test": "contains rect() and body/isStatic for platforms"
+        },
+        {
+          "name": "gravity-set",
+          "description": "La gravité est configurée",
+          "test": "contains setGravity or gravity option"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Comment faire un niveau avec des tuiles dans KAPLAY? J'ai besoin de créer une carte avec des murs, du sol et des pièges. Je veux aussi que mon personnage puisse se déplacer avec les flèches.",
+      "expected_output": "Code showing addLevel with tile map, player movement with arrow keys, collision with walls, and spike/danger tiles",
+      "files": [],
+      "assertions": [
+        {
+          "name": "addLevel-usage",
+          "description": "Le code utilise addLevel() ou level() pour créer la carte",
+          "test": "contains addLevel or level()"
+        },
+        {
+          "name": "tile-definitions",
+          "description": "Les tuiles sont définies avec des symboles et composants",
+          "test": "contains tiles definition with symbol mapping"
+        },
+        {
+          "name": "tile-width-height",
+          "description": "Les dimensions des tuiles sont configurées",
+          "test": "contains tileWidth and tileHeight"
+        },
+        {
+          "name": "player-movement",
+          "description": "Le joueur se déplace avec les flèches",
+          "test": "contains onKeyDown for arrow keys"
+        },
+        {
+          "name": "obstacle-tiles",
+          "description": "Il y a des tuiles d'obstacle/piège",
+          "test": "contains body/isStatic or danger tag for walls"
+        },
+        {
+          "name": "player-collision",
+          "description": "Le joueur a area() et body() pour les collisions",
+          "test": "contains area() and body()"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Je veux ajouter de la physique à mon jeu KAPLAY: un personnage avec gravité qui peut sauter, des collisions avec des ennemis, un système de vie, et un écran de game over. Aide-moi à coder ça.",
+      "expected_output": "Code with body(), area(), collision events, health component, scene management for game over",
+      "files": [],
+      "assertions": [
+        {
+          "name": "gravity-physics",
+          "description": "La physique (gravité, body) est configurée",
+          "test": "contains body() and setGravity or gravity option"
+        },
+        {
+          "name": "player-jump",
+          "description": "Le joueur peut sauter",
+          "test": "contains jump() and onKeyPress space"
+        },
+        {
+          "name": "enemy-entity",
+          "description": "Un ennemi est créé",
+          "test": "contains enemy with sprite and area"
+        },
+        {
+          "name": "collision-detection",
+          "description": "Les collisions joueur-ennemi sont détectées",
+          "test": "contains onCollide"
+        },
+        {
+          "name": "health-system",
+          "description": "Le joueur a un système de vie (health component)",
+          "test": "contains health()"
+        },
+        {
+          "name": "game-over-scene",
+          "description": "Un écran de game over est défini avec scene()",
+          "test": "contains scene(\"gameover\" or scene(\"lose\""
+        },
+        {
+          "name": "scene-transition",
+          "description": "Il y a une transition de scène (go()) vers game over",
+          "test": "contains go() for scene change"
+        }
+      ]
+    }
+  ]
+}
