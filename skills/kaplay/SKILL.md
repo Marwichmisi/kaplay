@@ -36,7 +36,27 @@ Create 2D games with **KAPLAY.js v4000** (successor to Kaboom.js).
 7. **Polish** — Animations, particules, UI, juice (shake, flash)
 8. **Playtest** — Tester le core loop, valider que tout est atteignable
 
-### Phase 3: Polish Visuel
+### Phase 3: Playtest
+
+Utilise `scripts/playtest.js` pour lancer le jeu en mode headless :
+
+```bash
+bash scripts/setup.sh    # (1ère fois : installe puppeteer + vite + template)
+node scripts/playtest.js # (ou node playtest.js après setup)
+```
+
+Le script :
+
+1. Démarre Vite automatiquement (ou utilise une URL passée en argument)
+2. Capture des screenshots à t=0, t=2s, t=5s
+3. Simule des entrées (flèches, espace, clics) pour déclencher le gameplay
+4. Vérifie les erreurs dans la console JS
+5. Extrait l'état du jeu si `window.score` ou `window.gameState` existe
+6. Génère un rapport avec le résultat
+
+Les screenshots sont sauvegardés dans `playtest-screenshots/` — ouvre-les pour inspecter visuellement le rendu.
+
+### Phase 4: Polish Visuel
 
 1. **Palette** — Choisir une palette cohérente (PASTEL, PICO8, ENDESGA, NEON — voir visual-assets.md)
 2. **Sprites procéduraux** — Pas de `rect()`/`circle()` nus pour les objets (voir visual-assets.md)
