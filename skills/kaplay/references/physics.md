@@ -1,5 +1,55 @@
 # Physics and Collisions
 
+## Physics Validation (Critical!)
+
+**Always verify physics allow required gameplay before building levels.**
+
+### Jump Height Formula
+
+```
+max_height = force² / (2 × gravity)
+```
+
+| Force | Gravity | Max Height | Notes |
+|-------|---------|------------|-------|
+| 500 | 1600 | 78px | Short hop |
+| 600 | 1400 | 128px | Medium jump |
+| 680 | 1400 | 165px | High jump |
+| 750 | 1600 | 175px | Floaty feel |
+
+### Movement Range
+
+```
+reachable_distance = speed × time
+reachable_height = jump_force² / (2 × gravity)
+```
+
+**Golden rule:** If the game requires reaching X, verify physics allow reaching X.
+
+### Common Pitfalls
+
+- Targets placed beyond jump range
+- Gaps larger than jump distance
+- Enemies faster than player can react
+- Timers shorter than required actions
+- Always prototype movement before building levels
+
+### Example Setup
+
+```js
+const SPEED = 300;
+const JUMP_FORCE = 650;
+
+kaplay({ gravity: 1400 });
+
+const player = add([rect(32, 48), pos(100, 400), area(), body(), "player"]);
+onKeyDown("left", () => player.move(-SPEED, 0));
+onKeyDown("right", () => player.move(SPEED, 0));
+onKeyPress("space", () => { if (player.isGrounded()) player.jump(JUMP_FORCE); });
+```
+
+---
+
 ## Area Component
 
 Defines collision shape. Required for collision detection.

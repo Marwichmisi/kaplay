@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>KAPLAY Game</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #000; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        canvas { display: block; }
+    </style>
+</head>
+<body>
+<script type="module">
+import kaplay from "https://unpkg.com/kaplay@3001/dist/kaboom.mjs";
+
+kaplay({
+    width: 800,
+    height: 600,
+    background: "#141420",
+    crisp: true,
+});
+
+scene("game", () => {
+    const player = add([
+        rect(32, 48), color(100, 200, 255),
+        pos(100, 400), area(), body(), anchor("center"),
+        "player",
+    ]);
+    add([
+        rect(width(), 20), color(50, 180, 50),
+        pos(0, height() - 20), area(), body({ isStatic: true }),
+        "ground",
+    ]);
+    onKeyDown("left", () => player.move(-300, 0));
+    onKeyDown("right", () => player.move(300, 0));
+    onKeyPress("space", () => { if (player.isGrounded()) player.jump(600); });
+    player.onUpdate(() => {
+        if (player.pos.y > height() + 50) go("game");
+    });
+});
+
+go("game");
+</script>
+</body>
+</html>
